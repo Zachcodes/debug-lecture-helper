@@ -3,17 +3,18 @@ import './App.css';
 
 class App extends Component {
   constructor(props) {
-    super(props)
+    super(props);
     this.state = {
       result: null,
       firstNum: null,
       secondNum: null
-    }
+    };
   }
 
   calculate() {
     let { firstNum, secondNum } = this.state;
-    let sum = firstNum + secondNum;
+    debugger;
+    let sum = +firstNum + +secondNum;
     this.setState({
       result: sum,
       firstNum: '',
@@ -21,7 +22,7 @@ class App extends Component {
       cost: '',
       quatity: '',
       taxRate: ''
-    })
+    });
   }
 
   calcTotal() {
@@ -30,7 +31,7 @@ class App extends Component {
     let tax = subTotal * taxRate;
     this.setState({
       total: tax + subTotal
-    })
+    });
   }
 
   render() {
@@ -41,28 +42,44 @@ class App extends Component {
         <input
           value={this.state.firstNum}
           type="number"
-          onChange={(e) => this.setState({ firstNum: e.target.value })} />
+          onChange={e => this.setState({ firstNum: e.target.value })}
+        />
         <span>+</span>
         <input
           value={this.state.secondNum}
           type="number"
-          onChange={(e) => this.setState({ secondNum: e.target.value })} />
-        <br /><br />
-        <button onClick={() => this.calculate}>Calculate</button>
-        {
-          this.state.result ? (
-            <p>Result is {this.state.result}</p>
-          ) : null
-        }
+          onChange={e => this.setState({ secondNum: e.target.value })}
+        />
+        <br />
+        <br />
+        <button onClick={() => this.calculate()}>Calculate</button>
+        {this.state.result ? <p>Result is {this.state.result}</p> : null}
 
         <hr />
-        <p>Cost of item <input type="text" onChange={e => this.setState({ cost: e.target.value })} /></p>
-        <p>Quantity <input type="text" onChange={e => this.setState({ quantity: e.target.value })} /></p>
-        <p>Sales tax % <input type="text" onChange={e => this.setState({ taxRate: e.target.value })} /></p>
+        <p>
+          Cost of item{' '}
+          <input
+            type="text"
+            onChange={e => this.setState({ cost: e.target.value })}
+          />
+        </p>
+        <p>
+          Quantity{' '}
+          <input
+            type="text"
+            onChange={e => this.setState({ quantity: e.target.value })}
+          />
+        </p>
+        <p>
+          Sales tax %{' '}
+          <input
+            type="text"
+            onChange={e => this.setState({ taxRate: e.target.value })}
+          />
+        </p>
         <br />
         <button onClick={() => this.calcTotal()}>Calculate</button>
         <p>Total cost: {this.state.total}</p>
-
       </div>
     );
   }
