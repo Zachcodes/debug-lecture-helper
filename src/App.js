@@ -3,18 +3,17 @@ import './App.css';
 
 class App extends Component {
   constructor(props) {
-    super(props)
+    super(props);
     this.state = {
       timer: 0
-    }
+    };
   }
 
-  componenetDidMount() {
-    console.log('componentDidMount method invoked...')
-    const incrementTimer = () => this.setState({ timer: this.state.timer + 1 })
-    setInterval(incrementTimer, 1000)
+  componentDidMount() {
+    console.log('componentDidMount method invoked...');
+    const incrementTimer = () => this.setState({ timer: this.state.timer + 1 });
+    setInterval(incrementTimer, 1000);
   }
-
 
   render() {
     return (
